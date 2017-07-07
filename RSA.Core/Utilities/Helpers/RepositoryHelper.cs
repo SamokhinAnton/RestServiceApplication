@@ -1,4 +1,5 @@
 ﻿using Microsoft.Practices.Unity;
+using RSA.Core.App_Start;
 using RSA.Core.Members;
 using RSA.Core.Members.Models;
 using RSA.Core.Models;
@@ -14,21 +15,17 @@ namespace RSA.Core.Utilities.Helpers
 {
     public static class RepositoryHelper
     {
-        [Dependency]
-        public static IMembersRepositoryAsync<MemberDto> MembersRepo { get; set; }
-
-        [Dependency]
-        public static IPostsRepositoryAsync<PostDto> PostsRepo { get; set; }
-
         public static async Task Create(RestEntities type, string url)
         {
             switch (type)
             {
                 case RestEntities.Members:
-                    await Save(MembersRepo, url);
+                    var membersRepo = UnityConfig.GetConfiguredContainer().Resolve<IMembersRepositoryAsync<MemberDto>>();
+                    await Save(membersRepo, url);
                     break;
                 case RestEntities.Posts:
-                    await Save(PostsRepo, url);
+                    var postsRepo = UnityConfig.GetConfiguredContainer().Resolve<IPostsRepositoryAsync<PostDto>>();
+                    await Save(postsRepo, url);
                     break;
                 default:
                     break;

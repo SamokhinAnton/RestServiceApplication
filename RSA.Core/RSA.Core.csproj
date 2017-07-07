@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="IRepositoryAsync.cs" />
     <Compile Include="Members\IMembersRepositoryAsync.cs" />
     <Compile Include="Members\MembersRepositoryAsync.cs" />

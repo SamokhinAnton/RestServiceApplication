@@ -16,7 +16,7 @@ namespace RestServiceApplication
     class Program
     {
         static void Main(string[] args)
-        {
+       {
             foreach (var item in DemoData.Data)
             {
                 RepositoryHelper.Create(item.Type, item.Url).Wait();
